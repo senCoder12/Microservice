@@ -1,6 +1,7 @@
 package com.lcwd.user.service.servies.impl;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,24 @@ public class UserServiceImpl implements UserService{
         userReposistory.deleteById(userId);
     }
 
-    // @Override
-    // public User updateUser(String userId, User user) {
-    //     User user2 = userReposistory.updateUser(userId, user);
-    //     return user2;
-    // }
+    @Override
+    public User updateUser(String userId, User user) {
+        User newUser = userReposistory.findById(userId).get();
+        if(!"".equals(userId) && Objects.nonNull(userId)) {
+            newUser.setUserId(userId);
+        }
+        if(Objects.nonNull(user.getName()) && !"".equals(user.getName())) {
+            newUser.setName(user.getName());
+        }
+
+        if(Objects.nonNull(user.getEmail()) && !"".equals(user.getEmail())) {
+            newUser.setEmail(user.getEmail());
+        }
+
+        if(Objects.nonNull(user.getAbout()) && !"".equals(user.getAbout())) {
+            newUser.setAbout(user.getAbout());
+        }
+        return userReposistory.save(newUser);
+    }
     
 }
