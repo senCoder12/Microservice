@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HotelServiceApplication",
+            "request": "launch",
+            "mainClass": "com.lcwd.hotel.service.HotelService.HotelServiceApplication",
+            "projectName": "HotelService"
+        },
+        {
+            "type": "java",
+            "name": "HotelServiceApplication",
+            "request": "launch",
+            "mainClass": "com.lcwd.hotel.HotelServiceApplication",
+            "projectName": "HotelService"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-UserServiceApplication<user-Service>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
