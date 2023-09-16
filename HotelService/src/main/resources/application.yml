@@ -4,9 +4,8 @@ server:
 spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/microservice
-        username: postgre
+        username: postgres
         password: postgre
-        driver-class-name: com.postgresql.cj.jdbc.Driver
     
     jpa:
         hibernate: 
