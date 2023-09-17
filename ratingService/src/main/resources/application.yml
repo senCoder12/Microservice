@@ -1,0 +1,9 @@
+server:
+    port: 8083
+
+
+spring:
+    data:
+        mongodb: 
+            url: mongodb+srv://mayukhsen85082:6QnSO4L6en8T53NB@cluster0.6wgwac7.mongodb.net/?retryWrites=true&w=majority
+            database: microservices
