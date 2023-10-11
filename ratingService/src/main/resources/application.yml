@@ -7,3 +7,16 @@ spring:
         mongodb: 
             url: mongodb+srv://mayukhsen85082:6QnSO4L6en8T53NB@cluster0.6wgwac7.mongodb.net/?retryWrites=true&w=majority
             database: microservices
+
+    application:
+        name: RATING-SERVICE
+
+
+eureka:
+    instance:
+        prefer-ip-address: true
+    client:
+        fetch-registry: true
+        register-with-eureka: true
+        service-url:
+            defaultZone: http://localhost:8761/eureka
