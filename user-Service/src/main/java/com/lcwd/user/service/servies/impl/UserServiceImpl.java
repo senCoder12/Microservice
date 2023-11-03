@@ -1,9 +1,12 @@
 package com.lcwd.user.service.servies.impl;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.lcwd.user.service.entities.Hotel;
 import com.lcwd.user.service.entities.Rating;
+import com.lcwd.user.service.external.services.HotelService;
+import com.lcwd.user.service.external.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,10 @@ public class UserServiceImpl implements UserService{
     private UserReposistory userReposistory;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private HotelService hotelService;
+
+    @Autowired
+    private RatingService ratingService;
 
     @Override
     public User saveUser(User user) {
@@ -40,21 +46,17 @@ public class UserServiceImpl implements UserService{
         User user = userReposistory.findById(userId).orElseThrow( () ->
                 new ResourceNotFoundException("User with id " + userId + " not found on server !!"));
 
-        Rating[] ratingsOfUser
-                = restTemplate.getForObject("http://localhost:8083/ratings/user/"+user.getUserId(),
-                Rating[].class);
+        List<Rating> ratingsOfUser
+                = ratingService.getRatings(user.getUserId());
 
-        List<Rating> ratings = Arrays.stream(ratingsOfUser).toList();
+        List<Rating> ratingList = ratingsOfUser.stream()
+                .map(rat -> {
+                    Hotel hotel = hotelService.getHotel(rat.getHotelId());
+                    rat.setHotel(hotel);
+                    return rat;
+                })
+                .collect(Collectors.toList());
 
-        List<Rating> ratingList = ratings.stream().map(rating -> {
-            ResponseEntity<Hotel> hotelEntity =
-                    restTemplate.getForEntity("http://localhost:8082/ratings/hotel/"+rating.getHotelId(),
-                            Hotel.class);
-            Hotel hotel = hotelEntity.getBody();
-            rating.setHotel(hotel);
-
-            return rating;
-        });
         user.setRatings(ratingList);
         return user;
     }
