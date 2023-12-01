@@ -12,6 +12,7 @@
         <module name="ServiceRegistry" />
         <module name="ratingService" />
         <module name="ApiGateway" />
+        <module name="configServer" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
       <module name="ApiGateway" options="-parameters" />
       <module name="HotelService" options="-parameters" />
       <module name="ServiceRegistry" options="-parameters" />
+      <module name="configServer" options="-parameters" />
       <module name="ratingService" options="-parameters" />
       <module name="user-Service" options="-parameters" />
     </option>

@@ -12,17 +12,17 @@ spring:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
           predicates:
-            - path=/user/**
+            - Path=/user/**
 
         - id: HOTEL-SERVICE
           uri: lb://HOTEL-SERVICE
           predicates:
-            - path=/hotel/**
+            - Path=/hotel/**
 
         - id: RATING-SERVICE
           uri: lb://RATING-SERVICE
           predicates:
-            - path=/ratings/**
+            - Path=/ratings/**
 
 eureka:
   instance:
