@@ -7,12 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="user-Service" />
         <module name="HotelService" />
         <module name="ServiceRegistry" />
         <module name="ratingService" />
         <module name="ApiGateway" />
         <module name="configServer" />
+        <module name="userService" />
       </profile>
     </annotationProcessing>
   </component>
@@ -23,7 +23,7 @@
       <module name="ServiceRegistry" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="ratingService" options="-parameters" />
-      <module name="user-Service" options="-parameters" />
+      <module name="userService" options="-parameters" />
     </option>
   </component>
 </project>
