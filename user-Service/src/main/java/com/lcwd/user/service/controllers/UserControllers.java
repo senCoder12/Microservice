@@ -27,7 +27,7 @@ public class UserControllers {
     }   
     
     @GetMapping("/{userId}")
-//    @CircuitBreaker(name="hotelRatingCircuitBreaker", fallbackMethod = "hotelRatingFallbackMethod")
+    @CircuitBreaker(name="hotelRatingCircuitBreaker", fallbackMethod = "hotelRatingFallbackMethod")
     @RateLimiter(name= "hotelRatingLimiter", fallbackMethod = "hotelRatingFallbackMethod")
     public ResponseEntity<User> getSingleUser(@PathVariable String userId) {
         User user = userService.getUser(userId);
